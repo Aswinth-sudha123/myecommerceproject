@@ -1,0 +1,68 @@
+{% extends 'customer_nav.html' %}
+
+{% block content %}
+<style>
+    form{
+        width: 300px;
+        justify-content: center;
+        text-align: center;
+    }
+</style>
+
+    <h4 class="text-center mt-5">Edit Profile</h4>
+
+<center>
+    <form class="mt-3" action="{% url 'edit_profile' user.customer.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="first_name">First Name:</label>
+            <input type="text" class="form-control" name="first_name" value="{{user.customer.first_name}}">
+        </div>
+        <div class="form-group">
+            <label for="last_name">Last Name:</label>
+            <input type="text" class="form-control" name="last_name" value="{{user.customer.last_name}}">
+        </div>
+        <div class="form-group">
+            <label for="last_name">Full Name:</label>
+            <input type="text" class="form-control" name="full_name" value="{{user.customer_name}}">
+        </div>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" class="form-control" name="age" value="{{user.customer_age}}">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="text" class="form-control" name="phone" value="{{user.customer_phone}}">
+        </div>
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" class="form-control" name="address" value="{{user.customer_address}}">
+        </div>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" name="username" value="{{user.customer.username}}">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" name="email" value="{{user.customer.email}}">
+        </div>
+        <div class="form-group mt-3">
+            <label for="image">Image :</label>
+            <img src="{{user.Image.url}}" width="150px" class="img-thumbnail" alt=""><br><br>
+            <input class="form-control" type="file" class="form-control-file" name="file" accept="image/*">
+        </div>      
+        <br>
+        <button class="btn btn-warning" type="submit">Update Profile</button>
+        <button class="btn btn-success" type="button" onclick="goBack()">Cancel</button>
+    </form>
+</center>
+</div>
+</div>
+</div>
+<script>
+function goBack() {
+window.history.back();
+}
+</script>
+
+{% endblock %}

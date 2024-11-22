@@ -1,0 +1,171 @@
+{% extends 'customer_nav.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+  div a {
+    text-decoration: none;
+  }
+
+ .card{
+  
+    width: 300px;
+    padding: 10px;
+ }
+ .card img {
+        transition: opacity 0.5s, transform 0.5s;
+    }
+
+  .card img:hover {
+        opacity: 0.7;
+        transform: scale(1.1) translateZ(50px);
+    }
+</style>
+
+
+  <!-- navbar
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'userhome' %}">Ecommerce</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'userprofile' %}"><img src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/profile-52e0dc.svg" alt="">profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'userlogout' %}">Logout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'cart_list' %}"><img src="	https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/header_cart-eed150.svg" alt="">cart</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left: 30px;">
+              Categories
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% for a in cat %}
+              <a class="dropdown-item" href="{% url 'category_list' a.id %}">{{a.Catagery}}</a>
+              {% endfor %}
+            </div>
+        </li>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav> -->
+
+
+
+  <div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'images/ban1.png' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/ban2.png' %}"
+                class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/ban3.png' %}"
+                class="d-block w-100" alt="...">
+        </div>
+        
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+  <!-- content -->
+
+  <div class="container">
+
+    <div class="row justify-content-center">
+      {% for p in product %}
+      <div class="col-md-4 mb-4">
+        <div class="card mt-5">
+          <img src="{{ p.Image.url }}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h3 class="card-text text-dark">{{p.Product_name}}</h3>
+            <p class="card-text">{{ p.Quantity }}</p>
+            <p class="card-text">{{ p.Description }}</p>
+            <p class="card-text">₹{{ p.Price }} <span class="text-success">50% off</span></p>
+          </div>
+          <div class="cart-body">
+            <button class=" btn btn-warning"><a href="{% url 'Buy_now' p.id %}" class="text-dark" style="text-decoration: none;">buy Now</a></button>
+            <button class=" btn btn-success"><a href="{% url 'view_pro' p.id %}" class="text-dark" style="text-decoration: none;">View</a></button>
+            <button class=" btn btn-primary"><a href="{% url 'add_to_cart' p.id %}" class="text-dark" style="text-decoration: none;" onclick="addToCart()">Add to Cart</a></button>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+
+    <br>
+  </div>
+
+
+   <!-- footer -->
+   <footer class="text-light pt-5 pb-4 mt-auto"style="background-color: rgb(19, 76, 126)";>
+    <div class="container">
+     <div class="row">
+         <div class="col">
+                <h5 class="text-warning text-uppercase">About Us</h5>
+                <ul class="list-unstyled">
+                 <li><a class="text-decoration-none text-light" href="">about us</a></li>
+                 <li><a class="text-decoration-none text-light" href="">contact us</a></li>
+                 <li><a class="text-decoration-none text-light" href="">careers</a></li>
+                 <li><a class="text-decoration-none text-light" href="">Corparate Information</a></li>
+                </ul>
+         </div>
+
+         <div class="col">
+             <h5 class="text-warning text-uppercase">Group Companies</h5>
+             <ul class="list-unstyled">
+              <li><a class="text-decoration-none text-light" href="">Myntra</a></li>
+              <li><a class="text-decoration-none text-light" href="">Cleartrip</a></li>
+              <li><a class="text-decoration-none text-light" href="">shopsy</a></li>
+              <li><a class="text-decoration-none text-light" href="">vdart</a></li>
+             </ul>
+      </div>
+
+      <div class="col">
+         <h5 class="text-warning text-uppercase">Mail us</h5>
+         <p>☏Phone: 9988789975</p>
+         <p>Mail Us: Ecommerce PVT ecommercepvt@.in</p>
+  </div>
+
+  <div class="col col-lg-3 text-lg-center ">
+     <h5 class="text-warning text-uppercase">Social Media Partner</h5>
+    <div class="mt-5">
+     <a href="" class="text-light mx-2"><i class="fa-brands fa-facebook fa-2xl"></i></a>
+     <a href="" class="text-light mx-2"><i class="fa-brands fa-instagram fa-2xl"></i></a>
+     <a href="" class="text-light mx-2"><i class="fa-brands fa-twitter fa-2xl"></i></a>
+     <a href="" class="text-light mx-2"><i class="fa-brands fa-youtube fa-2xl"></i></a>
+    </div>
+</div>
+    </div>
+    </div>
+    <hr>
+    <p class="text-center">&copy;Ecommerce Private Limited of India </p>
+</footer>
+
+<script>
+  
+  function addToCart() {
+    // Add your logic for adding the product to the cart here
+    alert('Added to Cart!');
+  }
+</script>
+
+
+{% endblock %}

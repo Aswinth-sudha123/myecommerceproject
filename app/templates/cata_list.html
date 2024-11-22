@@ -1,0 +1,41 @@
+{% extends 'customer_nav.html' %}
+
+{% block content %}
+
+
+{% for p in product %}
+    <div class="card-deck mt-5">
+          <div class="row row-cols-1 row-cols-md-5">
+            <div class="col mb-4">
+          <!-- Card -->
+          <div class="card " style="margin-left: 50px;">
+            <!--Card image-->
+            <div class="view overlay">
+              <img class="card-img-top" src="{{p.Image.url}}" class="img-fluid" alt="Card image cap" height="300px" >
+              <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!--Card content-->
+            <div class="card-body">
+              <!--Title-->
+              <h4 class="card-title" style="text-align: center;">{{p.Product_name}}</h4>
+              <!--Text-->
+              <p class="card-text" style="text-align: center;">{{p.Description}}</p>
+              <p style="text-align: center;">₹{{p.Price}}</p>
+              <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+           <a href="{% url 'add_to_cart' p.id %}" >
+            <button type="submit" class="btn btn-light-blue btn-md" style="background-color: black; color: white; margin-left: 60px;">Add to cart</button></a>
+          
+          </div>
+          </div>
+          <!-- Card -->
+        </div>
+        <!-- Card deck -->
+        </div>
+        {% endfor %} 
+        </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'customer_nav.html' %}
+
+{% block content %}
+<style>
+  .container{
+    padding: 20px;
+  }
+  body{
+    background-color: rgb(208, 218, 230);
+  }
+ 
+</style>
+
+
+<!-- contents -->
+
+<h2 class="text-center text-info mt-3">Your Profile</h2>
+<div class="container mt-5" style="width: 500px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.523);">
+ <div class="row">
+    <div class="col-md-6">
+      <strong>Name:</strong> {{user.customer.first_name}} {{user.customer.last_name}} <br>
+    <strong>Username:</strong> {{user.customer.username}} <br>
+    <strong>Customer Name:</strong> {{user.customer_name}} <br>
+    <strong>Age:</strong> {{user.customer_age}} <br>
+    <strong>Place:</strong> {{user.customer_address}} <br>
+    <strong>Phone:</strong> {{user.customer_phone}} <br>
+    <strong>Email:</strong> {{user.customer.email}} <br>
+    <br>
+    </div>
+    <div class="col-md-6">
+      <strong>Image:</strong><br>
+    <img src="{{user.Image.url}}" class="img-fluid img-thumbnail" alt="" style="max-width: 150px;"> <br>
+    
+    </div>
+    <div class="container-fluid">
+      <a href="{% url 'edit_profilepage' user.customer.id %}"><button type="submit" class="btn btn-primary mt-3">Edit Proflie</button></a>
+      <a href="{% url 'userhome' %}"><button type="submit" class="btn btn-success mt-3">back</button></a>
+      <a href="{% url 'change_password' %}"><button class="btn btn-warning mt-3">Reset Password</button></a>
+  </div>
+ </div>
+    
+    
+    
+</div>
+<footer class="text-light pt-5 pb-4 mt-5"style="background-color: rgb(19, 76, 126)";>
+  <div class="container">
+   <div class="row">
+       <div class="col">
+              <h5 class="text-warning text-uppercase">About Us</h5>
+              <ul class="list-unstyled">
+               <li><a class="text-decoration-none text-light" href="">about us</a></li>
+               <li><a class="text-decoration-none text-light" href="">contact us</a></li>
+               <li><a class="text-decoration-none text-light" href="">careers</a></li>
+               <li><a class="text-decoration-none text-light" href="">Corparate Information</a></li>
+              </ul>
+       </div>
+
+       <div class="col">
+           <h5 class="text-warning text-uppercase">Group Companies</h5>
+           <ul class="list-unstyled">
+            <li><a class="text-decoration-none text-light" href="">Myntra</a></li>
+            <li><a class="text-decoration-none text-light" href="">Cleartrip</a></li>
+            <li><a class="text-decoration-none text-light" href="">shopsy</a></li>
+            <li><a class="text-decoration-none text-light" href="">vdart</a></li>
+           </ul>
+    </div>
+
+    <div class="col">
+       <h5 class="text-warning text-uppercase">Mail us</h5>
+       <p>☏Phone: 9988789975</p>
+       <p>Mail Us: Ecommerce PVT ecommercepvt@.in</p>
+</div>
+
+<div class="col col-lg-3 text-lg-center ">
+   <h5 class="text-warning text-uppercase">Social Media Partner</h5>
+  <div class="mt-5">
+   <a href="" class="text-light mx-2"><i class="fa-brands fa-facebook fa-2xl"></i></a>
+   <a href="" class="text-light mx-2"><i class="fa-brands fa-instagram fa-2xl"></i></a>
+   <a href="" class="text-light mx-2"><i class="fa-brands fa-twitter fa-2xl"></i></a>
+   <a href="" class="text-light mx-2"><i class="fa-brands fa-youtube fa-2xl"></i></a>
+  </div>
+</div>
+  </div>
+  </div>
+  <hr>
+  <p class="text-center">&copy;Ecommerce Private Limited of India </p>
+</footer>
+{% endblock %}

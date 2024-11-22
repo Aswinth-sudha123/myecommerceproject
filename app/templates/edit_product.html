@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<style>
+    form{
+        padding: 30px;
+    }
+</style>
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'admin_home' %}"> Admin Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" href="{% url 'add_cata' %}">catagory</a>
+                    <a class="nav-link active" href="{% url 'add_product' %}">Products</a>
+                    <a class="nav-link active" href="{% url 'cata_detail' %}">catagery Detials</a>
+                    <a class="nav-link active" href="{% url 'show_product' %}">product Detials</a>
+                    <a class="nav-link active" href="">customer Detials</a>
+                    <a class="nav-link active" href="">logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- content -->
+<center>
+    <div>
+        <h2 class="mt-3 text-primary">Edit Product Details</h2>
+      </div>
+      
+          <form action="{% url 'edit_product' product.id %}" method="POST" enctype="multipart/form-data class="mx-auto mt-3 p-4
+          style="width: 300px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.523);">
+              {% csrf_token %}
+              <div class="form-group mt-3">
+                  <label for="productName">Product Name :</label>
+                  <input type="text" class="form-control" id="productName" name="product_name" value="{{product.Product_name}}">
+              </div>
+              <div class="form-group mt-3">
+                  <label for="productName">Catagery :</label>
+                  <select class="form-control" name="select" id="" value="" >
+                      {% for c in catagery %}
+                      <option class="form-control" value="{{c.id}}" {% if product.catagery.id == c.id %} selected {% endif %}>
+                          {{c.Catagery}}</option>
+                      {% endfor%}
+                    </select>
+              </div>
+              <div class="form-group mt-3">
+                  <label for="description">Description :</label>
+                  <input type="text" class="form-control" id="description" name="description" value="{{product.Description}}">
+              </div>
+              <div class="form-group mt-3">
+                  <label for="quantity">Quantity :</label>
+                  <input type="text" class="form-control" id="quantity" name="quantity" value="{{product.Quantity}}">
+              </div>
+              <div class="form-group mt-3">
+                  <label for="price">Price :</label>
+                  <input type="text" class="form-control" id="price" name="price" value="{{product.Price}}">
+              </div>
+      
+
+              <div class="form-group mt-3">
+                  <label for="image">Image :</label>
+                  <img src="{{product.Image.url}}" width="150px" class="img-thumbnail" alt=""><br><br>
+                  <input class="form-control" type="file" class="form-control-file" name="file" accept="image/*">
+              </div>
+              <br>
+              <button type="submit" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            data-bs-title="click here to add student details">Edit Product</button>
+          </form>
+      </center>
+</body>
+
+</html>

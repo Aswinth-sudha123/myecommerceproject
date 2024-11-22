@@ -1,0 +1,35 @@
+{% extends 'customer_nav.html' %}
+
+{% block content %}
+<style>
+    .container{
+        /* margin-top: 50px;
+        margin-left: 500px; */
+        padding: 30px;
+    }
+    button a{
+        text-decoration: none;
+        color: black;
+    }
+</style>
+
+
+  <!-- navbar -->
+
+   <div class="container mt-5 text-center" style="width: 300px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.523);">
+    <img src="{{ product.Image.url }}" class="img-fluid img-thumbnail" style="max-width: 200px;" alt="">
+    <h1>{{ product.Product_name }}</h1>
+    <p> {{ product.Description }}</p>
+    <p>Category: {{ category.Catagery }}</p>
+    <p><strong>Price:</strong> ${{ product.Price }}</p>
+    <p><strong>quantity:</strong> {{ product.Quantity }}</p>
+    <button class=" btn btn-primary"><a href="{% url 'add_to_cart' product.id %}" class="text-dark">Add to Cart</a></button>
+   <button class="btn btn-warning"><a href="{% url 'userhome' %}">Back</a></button>
+    
+   </div>
+
+
+
+
+
+{% endblock %}
